@@ -9,26 +9,16 @@ require_once("../Controller/ControllerPacientes.php");
 
 $datos = new ControllerPacientes();
 $pacientes = $datos->showDataTable("pacientes", "1=1");
-
-if($_SERVER['REQUEST_METHOD']=='POST'){
-    if(isset($_POST['buscarrContactos'])){
-        $pacientes = $datos->GetPacientesByData($_POST['buscarrContactos']);
-        
-       
-        
-    }
-    
-}
-
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<script src="../View/pacientes.js" type="text/javascript"></script>
 <br>
 <link rel="stylesheet" href="../css/style.css">
 <div class="container-fluid">
     <!--Container con 3 columnas con el botón que lleva a la modal
 de añadir un contacto, la búsqueda de contactos, y
 la lista desplegable para ordenar por...-->
-    <h1 class="text-center">Mis pacientes</h1>
+    <h1 class="text-center">Mi pacientes</h1>
     <div class="row justify-content-between align-items-center justify">
 
         <!--Botón de la modal-->
@@ -96,10 +86,10 @@ la lista desplegable para ordenar por...-->
 
         <!--Búsqueda de contactos-->
         <div class="col-lg-3 mt-3 col-md-6 col-sm-12">
-            <form id="search-form" action="../View/contactos.php" method="POST">
+            <form id="search-form">
                 <div class="input-group">
-                    <input type="text" name="buscarrContactos" class="form-control" placeholder="Buscar por DNI, Nombre o apellidos...">
-                    <button class="btn btn-primary" value="" type="submit"><i class="bi bi-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Buscar por DNI, Nombre o apellidos...">
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
                 </div>
             </form>
         </div>
@@ -110,10 +100,9 @@ la lista desplegable para ordenar por...-->
                     <select class="form-control dropdown-toggle" id="sort">
                         <option selected value="">Ordenar por...</option>
                         <option value="recent">Más reciente</option>
-                        <option value="recent">Más reciente</option>
                         <option value="old">Más antiguo</option>
-                        <option value="az">A - Z</option>
-                        <option value="za">Z - A</option>
+                        <option value="az">Ascendente</option>
+                        <option value="za">Descendente</option>
                     </select>
                 </div>
             </div>
@@ -132,7 +121,6 @@ if ($pacientes == null) {
 
 <?php
 } else {
-
 ?>
     <div class="table-responsive rounded px-3">
         <table class="table rounded table table-striped table-hover table-borderless table-primary align-middle shadow">

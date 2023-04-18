@@ -30,21 +30,7 @@ class Model
             $paciente = new Paciente($row['dni'],$row['nombre'], $row['apellidos'], $row['edad'], $row['sexo'], $row['telefono'], $row['patologia']);
             $pacientes[] = $paciente;
         }
-        return $pacientes;
-    }
-    //Función que busca por dni, nombre o apellidos
-    public function selectPacientesByDni($busqueda)
-    {
-        $query = "SELECT * FROM pacientes where nombre like '%$busqueda%' or apellidos like '%$busqueda%'or apellidos like '%$busqueda%'";
-        $result = $this->db->query(($query));
 
-        $pacientes = array();
-        
-
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $paciente = new Paciente($row['dni'],$row['nombre'], $row['apellidos'], $row['edad'], $row['sexo'], $row['telefono'], $row['patologia']);
-            $pacientes[] = $paciente;
-        }
         return $pacientes;
     }
     public function borrarPaciente($table,$dnipaciente){

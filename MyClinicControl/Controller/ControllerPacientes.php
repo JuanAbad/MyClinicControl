@@ -37,21 +37,11 @@ class ControllerPacientes{
         $datos = new Model();
         $this->pacientes = $datos->insertPacientes($table,$paciente);
     }
-    //Función que llama a la model para poder sacar los pacientes
-    //por dni,nombre o apellidos
-    function GetPacientesByData($identificador){
-        $modelo = new Model();
-
-        $this->pacientes = $modelo->selectPacientesByDni($identificador);
-        
-        return $this->pacientes;
-        
-    }
     
 
 }
 
-  //Función que comprueba si se recibe un formulario de añadir un nuevo paciente
+  
   if([$_SERVER['REQUEST_METHOD']=='POST']){
     
     if(isset($_POST['dnipaciente'])){
@@ -61,8 +51,7 @@ class ControllerPacientes{
       $modelo->borrarPaciente("pacientes",$dnipaciente);
       header("location: ../View/contactos.php");
     }
-    //Función que recoge el texto de busqueda de busqueda de paciente
-    //Y llama a la model para buscar ese contacto en específico
+
    if(isset($_POST['nombre'])&& isset($_POST['apellidos'])){
       $dni = $_POST['dni'];
       $nombre = $_POST['nombre'];
@@ -80,3 +69,4 @@ class ControllerPacientes{
       header("location: ../View/contactos.php");
   }
 }
+?>
