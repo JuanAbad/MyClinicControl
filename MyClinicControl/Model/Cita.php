@@ -3,15 +3,17 @@
 class Cita{
     private $titulo;
     private $dnipaciente;
+    private $nombrepaciente;
     private $detalles;
     private $hora_inicio;
     private $hora_final;
     private $dia;
     private $mes;
     
-    public function __construct($titulo, $dnipaciente, $detalles, $hora_inicio, $hora_final,$dia,$mes) {
+    public function __construct($titulo, $dnipaciente, $nombrepaciente, $detalles, $hora_inicio, $hora_final,$dia,$mes) {
         $this->titulo = $titulo;
         $this->dnipaciente = $dnipaciente;
+        $this->nombrepaciente = $nombrepaciente;
         $this->detalles = $detalles;
         $this->hora_inicio = $hora_inicio;
         $this->hora_final = $hora_final;
@@ -33,6 +35,13 @@ class Cita{
     
     public function setDniPaciente($dnipaciente) {
         $this->dnipaciente = $dnipaciente;
+    }
+    public function getNombrePaciente() {
+        return $this->nombrepaciente;
+    }
+    
+    public function setNombrePaciente($nombrepaciente) {
+        $this->nombrepaciente = $nombrepaciente;
     }
     
     public function getDetalles() {

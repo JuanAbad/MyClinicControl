@@ -6,6 +6,9 @@
 .modal-dialog {
   margin: 40vh auto 220px auto
 }
+.top-modal.modal-dialog {
+  margin-top: 10%;
+}
 #horario{
   position: fixed;
   top: 30%;

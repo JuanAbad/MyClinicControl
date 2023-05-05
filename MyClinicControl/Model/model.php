@@ -86,6 +86,8 @@ class Model
         }
       
     }
+    /*Como obtenemos el dni del paciente, este método me busca el nombre del paciente
+    para añadirmelo en la base de datos, para posteriormente, visualizarmelo*/
     public function selectNombreByDni($dni) {
         
         $query = "SELECT nombre FROM pacientes WHERE dni = '".$dni."'";
@@ -100,6 +102,8 @@ class Model
         }
         return $pacientes;
     }
+    /*Método que me inserta los datos de las citas, incluido el nombre del paciente
+    obtenido del propio método "selectNombreByDni()"*/
     public function insertCitas($cita)
     {
         session_start();
@@ -110,10 +114,10 @@ class Model
         $nombre = $nombrePacienteArray[0];
         echo $nombre;
         $dnidoctor = $_SESSION['dniDoctor'];
-        $query = "INSERT INTO citas (titulo, paciente, detalles, hora_inicio, hora_fin, mes, dia, dnidoctor) 
+        $query = "INSERT INTO citas (titulo, paciente, detalles, hora_inicio, hora_fin, mes, dia, dnidoctor,dnipaciente) 
               VALUES ('".$cita->getTitulo()."', '".$nombre."', '".$cita->getDetalles()."', 
                       '".$cita->getHoraInicio()."', '".$cita->getHoraFinal()."', '".$cita->getMes()."', 
-                      '".$cita->getDia()."', '".$dnidoctor."')";
+                      '".$cita->getDia()."', '".$dnidoctor."','".$cita->getDniPaciente()."')";
         echo $query;
         
         $result = $this->db->query($query);
@@ -124,6 +128,8 @@ class Model
             return false;
         }
     }
+    /*Método que me obtiene las citas de la base de datos con un dia, mes
+    y doctor específico */
     public function getCitasByDate($dia,$mes){
         
         $dnidoctor = $_SESSION['dniDoctor'];
@@ -132,7 +138,7 @@ class Model
 
         $result = $this->db->query($query);
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            $cita = new Cita($row['Titulo'],$row['Paciente'], $row['Detalles'], $row['hora_inicio'], $row['hora_fin'], $row['Mes'], $row['Dia'], $row['dnidoctor']);
+            $cita = new Cita($row['Titulo'],$row['dnipaciente'],$row['Paciente'], $row['Detalles'], $row['hora_inicio'], $row['hora_fin'], $row['Mes'], $row['Dia'], $row['dnidoctor']);
 
             $citas[] = $cita;
         }
@@ -152,6 +158,7 @@ class Model
             return false;
         }
     }
+    /*Método que me hace un sistema de login de un doctor */
     public function loginDoctor($correo,$contrasena){
         $query = "SELECT * FROM doctores where correo = '".$correo."' and contraseña = '".$contrasena."';";
         $result = $this->db->query($query);
@@ -166,6 +173,8 @@ class Model
             return false;
         }
     }
+    /*Obviamente, este método, me modifica el paciente una vez que cogemos los
+    datos de la modal de modificar los pacientes*/
     public function modificarPaciente($paciente)
     {
         print_r($paciente);

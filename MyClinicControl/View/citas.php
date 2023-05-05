@@ -47,6 +47,9 @@ $pacientes = $datos->showDataTable("pacientes", 1);
         <select class="form-control" id="paciente" name="paciente" required>
           <option value="" disabled selected>Selecciona un paciente</option>
           <?php
+          /*Bucle que me pone en el select option el nombre de los pacientes
+          pero en el fondo, lo que nos interesa es extraer el dni que el usuario
+          escoge */
           foreach ($pacientes as $paciente) :
 
           ?>
@@ -55,10 +58,10 @@ $pacientes = $datos->showDataTable("pacientes", 1);
 
           endforeach;
           ?>
-          <!-- Otras opciones aquí -->
         </select>
       </div>
       <br>
+      <!--Formulario que extrae el formulario de alta de citas-->
       <div class="form-group">
         <label for="detalles">Detalles:</label>
         <textarea class="form-control" id="detalles" name="detalles" rows="5" required></textarea>
@@ -69,34 +72,7 @@ $pacientes = $datos->showDataTable("pacientes", 1);
         <div class="mb-3">
           <select class="form-select form-select" name="hora_inicio" id="" required>
             <option selected>Principio de la cita: </option>
-            <option value="00:00">00:00</option>
-            <option value="00:15">00:15</option>
-            <option value="00:30">00:30</option>
-            <option value="00:45">00:45</option>
-            <option value="01:00">01:00</option>
-            <option value="01:15">01:15</option>
-            <option value="01:30">01:30</option>
-            <option value="01:45">01:45</option>
-            <option value="02:00">02:00</option>
-            <option value="02:15">02:15</option>
-            <option value="02:30">02:30</option>
-            <option value="02:45">02:45</option>
-            <option value="03:00">03:00</option>
-            <option value="03:15">03:15</option>
-            <option value="03:30">03:30</option>
-            <option value="03:45">03:45</option>
-            <option value="04:00">04:00</option>
-            <option value="04:15">04:15</option>
-            <option value="04:30">04:30</option>
-            <option value="04:45">04:45</option>
-            <option value="05:00">05:00</option>
-            <option value="05:15">05:15</option>
-            <option value="05:30">05:30</option>
-            <option value="05:45">05:45</option>
-            <option value="06:00">06:00</option>
-            <option value="06:15">06:15</option>
-            <option value="06:30">06:30</option>
-            <option value="06:45">06:45</option>
+            <!--Conjunto de opciones, para poder el fin de la cita desde las 7:00 hasta las 23:45-->
             <option value="07:00">07:00</option>
             <option value="07:15">07:15</option>
             <option value="07:30">07:30</option>
@@ -172,36 +148,8 @@ $pacientes = $datos->showDataTable("pacientes", 1);
       <div class="form-group">
         <label for="hora-fin">Hora de fin:</label>
         <select class="form-select form-select" name="hora_fin" id="" required>
+          <!--Conjunto de opciones, para poder el fin de la cita desde las 7:15 hasta las 23:45-->
           <option selected>Fin de la cita: </option>
-          <option value="00:00">00:00</option>
-          <option value="00:15">00:15</option>
-          <option value="00:30">00:30</option>
-          <option value="00:45">00:45</option>
-          <option value="01:00">01:00</option>
-          <option value="01:15">01:15</option>
-          <option value="01:30">01:30</option>
-          <option value="01:45">01:45</option>
-          <option value="02:00">02:00</option>
-          <option value="02:15">02:15</option>
-          <option value="02:30">02:30</option>
-          <option value="02:45">02:45</option>
-          <option value="03:00">03:00</option>
-          <option value="03:15">03:15</option>
-          <option value="03:30">03:30</option>
-          <option value="03:45">03:45</option>
-          <option value="04:00">04:00</option>
-          <option value="04:15">04:15</option>
-          <option value="04:30">04:30</option>
-          <option value="04:45">04:45</option>
-          <option value="05:00">05:00</option>
-          <option value="05:15">05:15</option>
-          <option value="05:30">05:30</option>
-          <option value="05:45">05:45</option>
-          <option value="06:00">06:00</option>
-          <option value="06:15">06:15</option>
-          <option value="06:30">06:30</option>
-          <option value="06:45">06:45</option>
-          <option value="07:00">07:00</option>
           <option value="07:15">07:15</option>
           <option value="07:30">07:30</option>
           <option value="07:45">07:45</option>
@@ -275,13 +223,15 @@ $pacientes = $datos->showDataTable("pacientes", 1);
       <input type="hidden" name="dia" id="dia" value="">
       <input type="hidden" name="mes" id="mes" value="">
       <h1 id="prueba"></h1>
-      
-
       <input type="submit" class="btn btn-primary text-center" value="Añadir cita"></input>
     </form>
   </div>
 
   <script>
+    /*Script que hace que el titulo como mucho pueda tener 50 carácteres
+    ya que el titulo tiene que ser concreto, en parte para facilitarselo al doctor
+    y por otra, para que luego el título sea estético en la propia visualización
+    de las citas */
     const titulo = document.getElementById('titulo');
     const tituloCharacters = document.getElementById('titulo-characters');
 
