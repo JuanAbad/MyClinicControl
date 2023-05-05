@@ -29,6 +29,10 @@ class ControllerPacientes
     por dni,nombre o apellidos*/
   function GetPacientesByData($identificador)
   {
+    
+    $identificador = trim($identificador);
+    $identificadorConComillas = '"'.$identificador.'"';
+    
 
     $modelo = new Model();
 

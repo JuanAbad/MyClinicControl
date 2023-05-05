@@ -1,6 +1,7 @@
 <?php
 include_once('../View/header/header.php');
 include_once('../Controller/ControllerCitas.php');
+include_once('../Controller/ControllerPacientes.php');
 
 $controllerCita = new ControllerCitas();
 $dnidoctor = $_SESSION['dniDoctor'];
@@ -110,7 +111,10 @@ if (isset($_GET['diaVisualizar'])) {
         $numeroAccordeon++;
         $identificadorAcordeon = 'acordeon' . $numeroAccordeon;
         $controllerPaciente = new ControllerPacientes();
-        $detallesPaciente = $controllerPaciente->GetPacientesByData($cita->getDniPaciente());
+        
+        $cita->getDniPaciente();
+        $detallesPaciente = $controllerPaciente->GetPacientesByData( $cita->getDniPaciente());
+        $primerPaciente = $detallesPaciente[0];
         ?>
         
         <ul class="mt-3 bg-grisclarito p-3" id="estiloAgenda">
@@ -132,15 +136,15 @@ if (isset($_GET['diaVisualizar'])) {
                     <div class="accordion-body">
                     <div class="detallesPacientes">
                     <h4 class="fw-bold mb-4">Detalles del paciente:</h4>
-                    
+                    <?php  ?>
                     <div class="card mb-4">
                       <div class="card-body">
-                        <p class="card-text"><strong>DNI:</strong> 03954479c</p>
-                        <p class="card-text"><strong>Nombre:</strong> Alejandro</p>
-                        <p class="card-text"><strong>Apellidos:</strong> Biazzeto Fernandez</p>
-                        <p class="card-text"><strong>Teléfono:</strong> 673415403</p>
+                        <p class="card-text"><strong>DNI:</strong> <?php echo $primerPaciente->getDni(); ?>  </p>
+                        <p class="card-text"><strong>Nombre:</strong> <?php echo $primerPaciente->getNombre(); ?> </p>
+                        <p class="card-text"><strong>Apellidos:</strong> <?php echo $primerPaciente->getApellidos(); ?> </p>
+                        <p class="card-text"><strong>Teléfono:</strong> <?php echo $primerPaciente->getTelefono(); ?> </p>
                         <p class="card-text"><strong>Patología:</strong></p>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur saepe maiores nostrum, neque, laudantium doloribus sequi officiis magni, vero iste maxime cumque. Recusandae vitae quas nulla accusamus! Possimus, voluptatibus nisi.</p>
+                        <p class="card-text"> <?php echo $primerPaciente->getPatologia(); ?> </p>
                       </div>
                     </div>
                     </div>
