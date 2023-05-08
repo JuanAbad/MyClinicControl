@@ -1,0 +1,79 @@
+.cell .btn-hover:hover {
+  background-color: #5c84a7;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+.modal-dialog {
+  margin: 40vh auto 220px auto
+}
+.top-modal.modal-dialog {
+  margin-top: 10%;
+}
+#horario{
+  position: fixed;
+  top: 30%;
+  left: -10%;
+  right: 5%;
+  width: 80%;
+}
+#ModalEleccion{
+  margin-top: 10px;
+}
+.container .agenda {
+  overflow-x: auto;
+  max-height: calc(80vh - 100px);
+  border-radius: 15px;
+  width: 30%;
+  height: 80%;
+  position: fixed;
+  top: 13%;
+  right: 2%;
+  background-color: #f5f5f5;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .agenda ul {
+  position: relative;
+}
+
+.container .agenda ul li {
+  text-align: center;
+  width: 450px;
+  margin: 0 auto;
+}
+
+.container .agenda ul li a {
+  display: block;
+}
+
+.container .agenda ul li a.btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+
+.agenda ul {
+  list-style-type: none;
+  padding: 0;
+}
+li{
+  font-size: 1.2em;
+}
+.bg-grisclarito{
+  border: solid 1px rgb(207, 207, 207);
+  border-radius: 15px;
+  border-radius: 5px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .agenda {
+    width: 100%;
+    position: static;
+  }
+}
